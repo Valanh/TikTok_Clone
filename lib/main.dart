@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tiktokclone/scenes/MainSceene.dart';
 import 'scenes/LoginScene.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: "tiktok clone",
       debugShowCheckedModeBanner: false,
-      home:  LoginScene(),
+      home:  MainSceene(),
     );
   }
 }

@@ -3,6 +3,13 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'LoginScene.dart';
 
+import '../homescenes/ChartScene.dart';
+import '../homescenes/HomeScene.dart';
+import '../homescenes/MailBoxScene.dart';
+import '../homescenes/ProfileScene.dart';
+
+
+
 class MainSceene extends StatefulWidget {
   const MainSceene({super.key});
 
@@ -15,16 +22,24 @@ class _MainSceneState extends State<MainSceene> {
   Color _colorVS = Colors.white,
       _colorUNVS = Colors.white,
       _colorBG = Colors.black;
+  int _scenSelectSC = 0;
+  final List<Widget> _page = [
+    HomeScene(),
+    ChatScene(),
+    MailBoxScene(),
+    ProFileScene()
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(), //bottomNav
+      body: _page[_scenSelectSC], //bottomNav
       bottomNavigationBar: BottomNavigationBar(
         unselectedFontSize: 10,
         selectedFontSize: 10,
         selectedItemColor: _colorVS,
         unselectedItemColor: _colorUNVS,
+        //item tab
         items: [
           //nút home
           BottomNavigationBarItem(
@@ -54,6 +69,7 @@ class _MainSceneState extends State<MainSceene> {
               backgroundColor: _colorBG)
         ],
         currentIndex: _current,
+        //sự kiện click
         onTap: (value) {
           setState(() {
             _current = value;
@@ -66,10 +82,12 @@ class _MainSceneState extends State<MainSceene> {
               _colorUNVS = Colors.black;
               _colorBG = Colors.white;
             }
-            if (value == 2) {
-              //oppen cammera
-              Navigator.push(context,
-              CupertinoPageRoute(builder: (context)=> LoginScene()));
+            if(value >= 3){
+              _scenSelectSC = value - 1;
+            }else if (value <= 1) {
+              _scenSelectSC = value;
+            }else{
+              //open camera
             }
           });
         },
